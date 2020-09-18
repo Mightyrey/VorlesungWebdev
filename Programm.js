@@ -1,8 +1,6 @@
-console.log('Test');
-console.log('12.0');
 
-
-for(let i=0; i<=100;i++)
+const test = () => {
+    for(let i=1; i<=100;i++)
 {
     let Teilbar3 = i;
     Teilbar3 = i % 3;
@@ -32,6 +30,9 @@ for(let i=0; i<=100;i++)
         }
 
 }
+};
+
+console.log(test());
 
 
           
