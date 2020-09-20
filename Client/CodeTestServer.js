@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function () {
     fetch('http://localhost:5000/getAll')
     .then(response => response.json())
@@ -115,12 +116,14 @@ function insertRowIntoTable(data) {
     }
 }
 
+
+// Tabelle auslesen
 function loadHTMLTable(data) {
     const table = document.querySelector('table tbody');
-
-    if (data.length === 0) {
-        table.innerHTML = "<tr><td class='no-data' colspan='5'>No Data</td></tr>";
-        return;
+//Abfrage ob die Tabelle leer ist
+if (data.length === 0) {
+    table.innerHTML = "<tr><td class='no-data' colspan='5'> No Data </td></tr>";
+    return;
     }
 
     let tableHtml = "";
