@@ -1,0 +1,28 @@
+nav{
+background-color:greenyellow;
+color: #ffffff;
+padding: 30px 60px;
+display: flex;
+justify-content: space-between;
+
+
+}
+
+nav ul {
+
+    display: felx;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+nav li{
+    list-style: none;
+
+
+}
+nav li a{
+    color: forestgreen;
+    text-decoration: none;
+}
+
