@@ -3,7 +3,7 @@ const express = require("express"); // Zum starten des SQL servers
 // ist einde Defult funktion
 const path = require('path');
 
-// SQ importieren
+// SQl importieren
 const mysql = require("mysql");
 
 //(HTML anpassungen)
@@ -31,6 +31,14 @@ const publicDirectory = path.join(__dirname, './public');
 app.use(express.static(publicDirectory));
 
 
+//Parse URL-encoded bodies (as sent by html from), nimmt die von HTML gesendeten Sachen entgegen
+app.use(express.urlencoded({extended:false}));
+// Sorg dafür das die Daten die kommen im Format JSON übertragen werden
+app.use(express.json());
+
+
+
+
 // Starten der HTMl Engine
 app.set('view engine', 'hbs')
 
@@ -50,24 +58,11 @@ db.connect((error)=>{
     }
 });
 
-
-// Aufrufen der Index Seite
-app.get("/", (req,res) => {   
-
-    res.render('index'); // kein .hbs benötigt
-
-    //res.send("<h1>Home Page</h1>") // Sendet etwas zum Frontend
-});
-
-
-
-// Aufrufen der Register Seite
-app.get("/register", (req,res) => {   
-
-    res.render('register'); // die Seite möchten wir Rändern wenn wir die Seite aufrufen
-
-    
-});
+// Define Routes
+// Aufruf des Routen Skripts mit den Seiten
+app.use('/', require('./routes/pages'));
+// jedes mal wenn wir /auth aufrufen läuft es in routs --> auth rein
+app.use('/auth', require('./routes/auth'));
 
 
 // Auf diesen Port hört der express Server! Wichtig 
