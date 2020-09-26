@@ -11,5 +11,6 @@ const router = express.Router();
 // wird nur aufgerufen wenn ein Post benutzt wird
 router.post('/register', authController.register)
 
+router.post('/login', authController.login);
 
 module.exports = router;

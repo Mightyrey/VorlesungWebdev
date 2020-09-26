@@ -9,6 +9,8 @@ const mysql = require("mysql");
 //(HTML anpassungen)
 const dotenv = require('dotenv');
 
+// Hier wird der Cookiephasreser intralisiert
+const cookieParser = require('cookie-parser');
 // Hier wird das File mit den Sensiblen Informationen eingefügt, so sind diese über das Javascript nicht sichtbar
 dotenv.config({path:'./.env'});
 
@@ -33,16 +35,14 @@ app.use(express.static(publicDirectory));
 
 //Parse URL-encoded bodies (as sent by html from), nimmt die von HTML gesendeten Sachen entgegen
 app.use(express.urlencoded({extended:false}));
-// Sorg dafür das die Daten die kommen im Format JSON übertragen werden
+// Sorg dafür das die Daten die kommen im Format JSON übertragen werden // Parse JSON Bodies (as sent by API Clients)
 app.use(express.json());
-
-
+// Starten des Cookie Parsers
+app.use(cookieParser());
 
 
 // Starten der HTMl Engine
 app.set('view engine', 'hbs')
-
-
 
 
 
@@ -63,6 +63,8 @@ db.connect((error)=>{
 app.use('/', require('./routes/pages'));
 // jedes mal wenn wir /auth aufrufen läuft es in routs --> auth rein
 app.use('/auth', require('./routes/auth'));
+
+// Neue Route zu Login
 
 
 // Auf diesen Port hört der express Server! Wichtig 

@@ -12,9 +12,17 @@ router.get('/',(req,res)=>{
 
 });
 
-
+// Route zum Registrieren der User
 router.get('/register',(req,res)=>{
     res.render('register');
+
+
+});
+
+// Route zum Login von Usern
+
+router.get('/login',(req,res)=>{
+    res.render('login');
 
 
 });
